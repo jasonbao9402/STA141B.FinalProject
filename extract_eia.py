@@ -8,7 +8,7 @@ import json
 def read_key(keyfile):
     with open(keyfile) as f:
         return f.readline().strip("\n")
-key = read_key("Desktop/eia_key.txt") 
+key = read_key(".../eia_key.txt") 
 
 
 # API pull for renewable energy
@@ -63,6 +63,9 @@ def renewable_energy_pull():
 
     renewable_energy["generation"] = pd.to_numeric(renewable_energy["generation"], errors = "coerce")
     renewable_energy["period"] = pd.to_numeric(renewable_energy["period"])
+
+    renewable_energy["generation"] = renewable_energy["generation"].fillna(0)
+    renewable_energy["period"] = renewable_energy["period"].fillna(0)
 
     renewable_energy = renewable_energy.rename(columns={
         "location": "state",
@@ -120,8 +123,13 @@ def carbon_emissions_pull():
 
     carbon_emissions = pd.DataFrame(all_rows)
 
+    # change numeric values from string to int
     carbon_emissions["value"] = pd.to_numeric(carbon_emissions["value"], errors = "coerce")
     carbon_emissions["period"] = pd.to_numeric(carbon_emissions["period"])
+    
+    # fill null values with 0
+    carbon_emissions["value"] = carbon_emissions["value"].fillna(0)
+    carbon_emissions["period"] = carbon_emissions["period"].fillna(0)
 
     carbon_emissions = carbon_emissions.rename(columns={
         "state-name": "state",
