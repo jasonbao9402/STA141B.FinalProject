@@ -16,6 +16,7 @@ create_tables = [
             state TEXT NOT NULL,
             date DATE NOT NULL,
             renewable_energy_type TEXT NOT NULL,
+            renewable_energy_sector TEXT NOT NULL,
             renewable_energy_output INT NOT NULL
         );
     """,
@@ -25,7 +26,7 @@ create_tables = [
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             state TEXT NOT NULL,
             date DATE NOT NULL,
-            carbon_emissions_type TEXT NOT NULL,
+            carbon_emissions_sector TEXT NOT NULL,
             carbon_emissions_value REAL NOT NULL
         );
     """,
