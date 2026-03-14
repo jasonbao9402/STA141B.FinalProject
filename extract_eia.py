@@ -8,7 +8,7 @@ import json
 def read_key(keyfile):
     with open(keyfile) as f:
         return f.readline().strip("\n")
-key = read_key(".../eia_key.txt") 
+key = read_key("Desktop/eia_key.txt") 
 
 
 # API pull for renewable energy
@@ -132,7 +132,7 @@ def carbon_emissions_pull():
     carbon_emissions["period"] = carbon_emissions["period"].fillna(0)
 
     carbon_emissions = carbon_emissions.rename(columns={
-        "state-name": "state",
+        "stateId": "state",
         "period": "date",
         "sector-name": "carbon_emissions_type",
         "value": "carbon_emissions_value"
