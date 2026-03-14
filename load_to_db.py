@@ -8,7 +8,7 @@ renewable_energy = renewable_energy_pull()
 # Use dataframes to fill tables in database
 def load_table(df, table_name):
     conn = sql.connect(".../Energy_Data.db")
-    df.to_sql(table_name, conn, if_exists = "append", index = False)
+    df.to_sql(table_name, conn, if_exists = "replace", index = False)
     conn.close()
 
 load_table(carbon_emissions, "carbon_emissions")
