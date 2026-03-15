@@ -156,5 +156,49 @@ def carbon_emissions_pull():
 # API pull for state policy
 
 def state_policy_pull():
-    policy_url = ""
+    policy_cols = [
+        "state_firm",
+        "year",
+        "rps_enact",
+        "rps_eff",
+        "rps_plant",
+        "rps_noplant",
+        "deregulation",
+        "disc_enact",
+        "disc_eff",
+        "green_policy_en",
+    ]
 
+    policy_df = pd.read_csv(
+        "energy_policy_dataset/utwind09_14_09b_labels_stata.csv",
+        usecols=policy_cols
+    )
+
+    policy_df = policy_df.rename(columns={"state_firm": "state", "year": "date"})
+
+    numeric_cols = [c for c in policy_df.columns if c not in ["state", "date"]]
+    for c in numeric_cols:
+        policy_df[c] = pd.to_numeric(policy_df[c], errors="coerce")
+
+    policy_cols_binary = [
+        "rps_enact",
+        "rps_eff",
+        "rps_plant",
+        "rps_noplant",
+        "deregulation",
+        "disc_enact",
+        "disc_eff",
+        "green_policy_en",
+    ]
+    policy_cont_cols = [c for c in numeric_cols if c not in policy_cols_binary]
+
+    agg_map = {c: "max" for c in policy_cols_binary}
+    agg_map.update({c: "mean" for c in policy_cont_cols})
+
+    state_policy = (
+        policy_df.groupby(["state", "date"], as_index=False)
+        .agg(agg_map)
+        .sort_values(["state", "date"])
+    )
+
+    return state_policy
