@@ -114,6 +114,7 @@ ax.set_xlabel("Year")
 ax.set_ylabel("Renewable Electricity Generation (Million MWh)")
 ax.legend(loc="best")
 plt.show()
+plt.savefig("national_renewables.png")
 plt.close()
 
 # national emissions
@@ -124,6 +125,7 @@ ax.set_xlabel("Year")
 ax.set_ylabel("CO2 Emissions (Million Metric Tons)")
 ax.legend(loc="best")
 plt.show()
+plt.savefig("national_emissions.png")
 plt.close()
 
 # renewable generation by selected type
@@ -138,6 +140,7 @@ ax.set_title("US Renewable Electricity Generation by Type")
 ax.set_xlabel("Year")
 ax.set_ylabel("Renewable Electricity Generation (Million MWh)")
 plt.show()
+plt.savefig("national_renewable_type.png")
 plt.close()
 
 # renewable generation by sector
@@ -152,6 +155,7 @@ ax.set_title("US Renewable Electricity Generation by Sector")
 ax.set_xlabel("Year")
 ax.set_ylabel("Renewable Electricity Generation (Million MWh)")
 plt.show()
+plt.savefig("national_renewable_sector.png")
 plt.close()
 
 # carbon emissions by sector
@@ -166,6 +170,7 @@ ax.set_title("US CO2 Emissions by Sector")
 ax.set_xlabel("Year")
 ax.set_ylabel("CO2 Emissions (Million Metric Tons)")
 plt.show()
+plt.savefig("national_emissions_sector.png")
 plt.close()
 
 # relationship: fitted-line plot
@@ -180,5 +185,6 @@ plt.title("US Renewable Generation vs CO2 Emissions with Best-Fit Line")
 plt.xlabel("Renewable Electricity Generation (Million MWh)")
 plt.ylabel("CO2 Emissions (Million Metric Tons)")
 plt.show()
+plt.savefig("national_fitted.png")
 plt.close()
 
