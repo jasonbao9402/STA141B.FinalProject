@@ -36,8 +36,14 @@ create_tables = [
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             state TEXT NOT NULL,
             date DATE NOT NULL,
-            policy_type TEXT NOT NULL,
-            policy_summary REAL NOT NULL
+            rps_enact REAL,
+            rps_eff REAL,
+            rps_plant REAL,
+            rps_noplant REAL,
+            deregulation REAL,
+            disc_enact REAL,
+            disc_eff REAL,
+            green_policy_en REAL
         );
     """ 
 ]
